@@ -1,0 +1,162 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; /* Clean white background */
+    color: #333; /* Neutral text color */
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    background: #f8f8f8; /* Light gray background */
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+    color: #0073e6; /* Subtle blue hover effect */
+}
+
+/* Hero Section */
+.hero {
+    background: url('../images/sumer_king.jpg') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff; /* White text for contrast */
+}
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url('../images/sumer_king.jpg') no-repeat center center/cover;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #0073e6; /* Subtle blue heading */
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.content-section .project {
+    margin-bottom: 20px;
+}
+
+.content-section ul {
+    list-style: square inside;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.content-section ul li {
+    margin-bottom: 10px;
+}
+
+/* Form */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form button {
+    background: #0073e6;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #005bb5;
+}
+
+/* Footer */
+footer {
+    background: #f8f8f8;
+    color: #555;
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
+.logo {
+    font-size: 2rem; /* Adjust as needed */
+    font-family: serif; /* Use a readable font for Latin text */
+}
+
+.logo .cuneiform {
+    font-size: 1.8rem; /* Slightly smaller than Latin text */
+    font-family: 'Noto Sans Cuneiform', serif; /* Use a font that supports Cuneiform */
+    margin-left: 10px;
+}
