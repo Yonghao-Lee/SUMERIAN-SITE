@@ -1,162 +1,144 @@
-/* General Reset */
+/* Basic Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Use a comfortable font (e.g., Open Sans or Source Serif Pro) */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffffff; /* Clean white background */
-    color: #333; /* Neutral text color */
-    line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+  background-color: #fafafa;
+  line-height: 1.6;
 }
 
-/* Navbar */
+/* Navigation Bar */
 .navbar {
-    background: #f8f8f8; /* Light gray background */
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #e8f2ff; /* Light, subtle color akin to 3Blue1Brown’s pastel */
 }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.navbar .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
 }
 
-.navbar .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
 }
 
-.navbar .nav-links li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
-
-.navbar .nav-links li a:hover {
-    color: #0073e6; /* Subtle blue hover effect */
+.nav-links a:hover {
+  color: #4080ff;
 }
 
 /* Hero Section */
 .hero {
-    background: url('../images/sumer_king.jpg') no-repeat center center/cover;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #ffffff; /* White text for contrast */
-}
-.hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                url('../images/sumer_king.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  text-align: center;
+  padding: 2rem;
+  background: url('img.png') no-repeat center center/cover;
+  color: floralwhite  ; /* Adjust text color for contrast */
 }
 
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+.hero-content {
+  max-width: 800px;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    font-weight: 300;
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  background-color: #4080ff;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #3060c0;
 }
 
 /* Content Sections */
 .content-section {
-    padding: 60px 20px;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
 .content-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #0073e6; /* Subtle blue heading */
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #222;
 }
 
 .content-section p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 30px;
+  margin-bottom: 1rem;
 }
 
-.content-section .project {
-    margin-bottom: 20px;
+/* Gallery */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-.content-section ul {
-    list-style: square inside;
-    padding: 0;
-    margin: 20px 0;
+.gallery-item {
+  flex: 1 1 calc(33% - 2rem);
+  min-width: 250px;
+  position: relative;
 }
 
-.content-section ul li {
-    margin-bottom: 10px;
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
 }
 
-/* Form */
-form {
-    max-width: 400px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-form input,
-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-form button {
-    background: #0073e6;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-form button:hover {
-    background: #005bb5;
+.gallery-caption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
 }
 
 /* Footer */
 footer {
-    background: #f8f8f8;
-    color: #555;
-    text-align: center;
-    padding: 15px;
-    border-top: 1px solid #ddd;
-}
-.logo {
-    font-size: 2rem; /* Adjust as needed */
-    font-family: serif; /* Use a readable font for Latin text */
+  background-color: #e8f2ff;
+  padding: 1rem 2rem;
+  text-align: center;
+  margin-top: 3rem;
 }
 
-.logo .cuneiform {
-    font-size: 1.8rem; /* Slightly smaller than Latin text */
-    font-family: 'Noto Sans Cuneiform', serif; /* Use a font that supports Cuneiform */
-    margin-left: 10px;
+.footer-content p {
+  color: #555;
+  font-size: 0.9rem;
 }
