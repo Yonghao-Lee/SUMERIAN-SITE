@@ -43,23 +43,94 @@
 </section>
 
 <main>
-  <section class="content-section" id="materials">
-    <h2 id="materials-heading">Course Materials</h2>
-    <p class="materials-intro">
-      Access comprehensive study materials to deepen your understanding of Sumerian language and culture.
-    </p>
-    <div class="materials-container">
-      <a href="https://sumerian-materials.sgp1.digitaloceanspaces.com/Textbook.pdf"
-         class="material-card">
-        <div class="material-icon">𒁾</div>
-        <div class="material-content">
-          <h3>Sumerian Grammar Guide</h3>
-          <p>Essential reference for cuneiform writing and grammar structures</p>
-          <span class="download-size">PDF • 68.43 MB</span>
-        </div>
-      </a>
-    </div>
-  </section>
+  <!-- Modified material card HTML -->
+  <div class="materials-container">
+    <a href="#"
+       class="material-card"
+       data-file-url="https://sumerian-materials.sgp1.digitaloceanspaces.com/Textbook.pdf"
+       data-file-name="Sumerian-Grammar-Guide.pdf"
+       onclick="handleDownload(this); return false;">
+      <div class="material-icon">𒁾</div>
+      <div class="material-content">
+        <h3>Sumerian Grammar Guide</h3>
+        <p>Essential reference for cuneiform writing and grammar structures</p>
+        <span class="download-size">PDF • 68.43 MB</span>
+        <span class="download-status" aria-live="polite"></span>
+      </div>
+    </a>
+  </div>
+
+  <script>
+    async function handleDownload(element) {
+      // Get the download status element
+      const statusSpan = element.querySelector('.download-status');
+      const fileUrl = element.dataset.fileUrl;
+      const fileName = element.dataset.fileName;
+
+      try {
+        // Show download starting status
+        statusSpan.textContent = 'Starting download...';
+
+        const response = await fetch(fileUrl, {
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="${fileName}"`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Create blob from the response
+        const blob = await response.blob();
+
+        // Create download link
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const downloadLink = document.createElement('a');
+
+        // Set download attributes
+        downloadLink.style.display = 'none';
+        downloadLink.href = downloadUrl;
+        downloadLink.download = fileName;
+
+        // Trigger download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+
+        // Cleanup
+        setTimeout(() => {
+          document.body.removeChild(downloadLink);
+          window.URL.revokeObjectURL(downloadUrl);
+          statusSpan.textContent = 'Download complete!';
+
+          // Clear status message after 3 seconds
+          setTimeout(() => {
+            statusSpan.textContent = '';
+          }, 3000);
+        }, 100);
+
+      } catch (error) {
+        console.error('Download failed:', error);
+        statusSpan.textContent = 'Download failed. Please try again.';
+
+        // Clear error message after 5 seconds
+        setTimeout(() => {
+          statusSpan.textContent = '';
+        }, 5000);
+      }
+    }
+  </script>
+
+  <!-- Optional: Add some CSS for the download status -->
+  <style>
+    .download-status {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #666;
+    }
+  </style>
   <section class="content-section" id="history" aria-labelledby="history-heading">
     <h2 id="history-heading">Introduction to Sumerian Civilization</h2>
     <p>
