@@ -69,14 +69,41 @@
       try {
         statusSpan.textContent = 'Starting download...';
 
-        // Using a simple fetch without setting Content-Type and Content-Disposition
-        // as these headers might be already set by the CDN
-        const response = await fetch(fileUrl);
+        // First, try to check if the file is accessible
+        const response = await fetch(fileUrl, {
+          method: 'GET',
+          mode: 'cors', // Enable CORS
+          headers: {
+            'Accept': 'application/pdf',
+          }
+        });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          // If the file isn't accessible directly, try an alternative approach
+          const directLink = document.createElement('a');
+          directLink.href = fileUrl;
+          directLink.target = '_blank';
+          directLink.download = fileName;
+
+          // Create and dispatch a click event
+          const clickEvent = new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: false
+          });
+
+          directLink.dispatchEvent(clickEvent);
+          statusSpan.textContent = 'Opening download in new tab...';
+
+          // Clear status after a delay
+          setTimeout(() => {
+            statusSpan.textContent = '';
+          }, 3000);
+
+          return;
         }
 
+        // If we got here, the fetch was successful
         const blob = await response.blob();
         const downloadUrl = window.URL.createObjectURL(blob);
         const downloadLink = document.createElement('a');
@@ -88,6 +115,7 @@
         document.body.appendChild(downloadLink);
         downloadLink.click();
 
+        // Cleanup
         setTimeout(() => {
           document.body.removeChild(downloadLink);
           window.URL.revokeObjectURL(downloadUrl);
@@ -100,7 +128,15 @@
 
       } catch (error) {
         console.error('Download failed:', error);
-        statusSpan.textContent = 'Download failed. Please try again.';
+
+        // Try the direct download approach as a fallback
+        const directLink = document.createElement('a');
+        directLink.href = fileUrl;
+        directLink.target = '_blank';
+        directLink.download = fileName;
+        directLink.click();
+
+        statusSpan.textContent = 'Opening in new tab...';
 
         setTimeout(() => {
           statusSpan.textContent = '';
@@ -108,6 +144,19 @@
       }
     }
   </script>
+
+  <style>
+    .download-status {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    .material-card {
+      cursor: pointer;
+    }
+  </style>
 
   <!-- Optional: Add some CSS for the download status -->
   <style>
